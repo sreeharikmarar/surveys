@@ -30,9 +30,11 @@ class SurveyController < ApplicationController
   end
 
   def update
+
   end
 
-  def delete
+  def destroy
+
   end
 
   private

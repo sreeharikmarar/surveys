@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+gem 'pg'
+
 # Use SCSS for stylesheets
 
 gem 'devise'
@@ -48,6 +49,10 @@ group :development, :test do
 	gem 'factory_girl_rails'
 	gem "faker"
 end
+
+group :production do
+  gem 'rails_12factor'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -59,4 +64,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.1.1"
 
