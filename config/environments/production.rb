@@ -44,6 +44,16 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "lit-caverns-2792.herokuapp.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "easysurveyapp@gmail.com",
+    password: "easysurvey123@"
+  }
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
@@ -79,4 +89,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  HOST = "http://floating-fortress-5386.herokuapp.com"
 end
