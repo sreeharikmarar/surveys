@@ -19,7 +19,8 @@
           </ul>
           <% else %>
           <ul class="nav pull-right">
-             <li><%= link_to "sign in" , user_session_path %></li> 
+             <li><%= link_to "Sign In" , user_session_path %></li> 
+             <li><%= link_to "Sign Up" , new_user_registration_path %></li> 
           </ul>
           <% end %>
 
@@ -38,6 +39,7 @@
     </div>
   </div>
  
+       <%= render :partial=>"/layouts/lightbox" %>
 
 </body>
 </html>

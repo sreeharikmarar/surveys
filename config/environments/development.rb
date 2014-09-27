@@ -34,4 +34,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  ENV["HOST"] = "localhost:3000"
+  ENV["PROTOCOL"] = "http"
+  ENV["LOG_IT"] = "true"
+  config.action_mailer.default_url_options = {:host => ENV["HOST"]}
+#  default_url_options[:host] = ENV["HOST"]
+
+  config.action_controller.asset_host = "localhost:3000"
 end

@@ -1,4 +1,8 @@
-
+<% if flash[:error] %>
+<div class='alert'>
+<%= flash[:error] %>
+</div>
+<% end %>
 
 <div class="well span4"  style="padding:10px;margin:100px 350px 0px 350px;height:200px;">
    

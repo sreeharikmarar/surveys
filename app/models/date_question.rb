@@ -1,0 +1,3 @@
+class DateQuestion < Question
+
+end

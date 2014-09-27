@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926134615) do
+ActiveRecord::Schema.define(version: 20140927080209) do
+
+  create_table "options", force: true do |t|
+    t.integer "question_id"
+    t.string  "option_1"
+    t.string  "option_2"
+    t.string  "option_3"
+    t.string  "option_4"
+  end
+
+  add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.string   "text"
+    t.integer  "survey_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+
+  create_table "surveys", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "is_published",    default: false
+    t.integer  "no_of_questions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username",             default: "", null: false

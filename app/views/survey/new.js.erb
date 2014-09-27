@@ -1,0 +1,9 @@
+content = "<%= escape_javascript(render(:partial=>'form')) %>";
+
+$("body").addClass("noscroll");
+$('#DIVID_LIGHT_BOX_CONTAINER_MAIN').css({"height":"250px","position":"fixed"});
+options = {'width':645, 'content':content, 'heading':'Create Survey', 'showHeader':true, 'divName':null}
+
+
+//Pop Up the window
+showPopUpWindow(options);

@@ -7,13 +7,15 @@ class SessionsController < Devise::SessionsController
   def create
   	user = params['user']
     @user = user && user['email'] ? User.find_by_email(user['email']) : nil
-
-    if flash[:error] || (@user && @user.errors.any?)
-      
+    
+    @user.valid?
+    flash[:error] = "You have not confirmed your email address" if !@user.confirmed?
+    if flash[:error] || @user.errors.any? 
       self.resource = @user
       redirect_to user_session_url
       return false
     else
+      # redirect_to dashboard_path
       super
     end
   end
