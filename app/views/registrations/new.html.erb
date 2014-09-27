@@ -1,0 +1,27 @@
+<% path = registration_path(:user) %>
+
+<div class="well span4"  style="padding:10px;margin:100px 350px 0px 350px;height:220px;">
+   
+  <div class="box" align="center">
+
+    <%= simple_form_for(@user , :as => :user, :url => path, :role => "form" , :html=>{:class=>"form-signin"} ) do |f| %>
+      
+        
+          <%= f.input :username, :label =>false,  :input_html=> { :class=> 'form-control' }, :required => true, :placeholder=>"* Username" %>
+
+          <%= f.input :email, :label =>false,  :input_html=> { :class=> 'form-control' }, :required => true, :placeholder=>"* Email" %>
+        
+          <%= f.input :password, :label =>false, :required => true, :placeholder=>"* Password", input_html: { :class=> 'form-control' } %>
+        
+        
+          <%= f.submit "Sign In", :id=> "", :class=>"btn btn-lg btn-primary btn-block", "data-loading-text"=>"Signing In..." %>
+
+      
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

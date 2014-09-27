@@ -23,7 +23,9 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
 
- gem "twitter-bootstrap-rails"
+gem "simple_form"
+
+gem "twitter-bootstrap-rails"
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .js.coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -44,6 +46,7 @@ gem 'spring',        group: :development
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'factory_girl_rails'
+	gem "faker"
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
