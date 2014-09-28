@@ -49,6 +49,7 @@ Rails.application.configure do
   ENV["HOST"] = "localhost:3000"
   ENV["PROTOCOL"] = "http"
   ENV["LOG_IT"] = "true"
+  
   config.action_mailer.default_url_options = {:host => ENV["HOST"]}
 #  default_url_options[:host] = ENV["HOST"]
 

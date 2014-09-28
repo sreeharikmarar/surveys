@@ -10,6 +10,8 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -27,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -49,7 +51,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "lit-caverns-2792.herokuapp.com",
+    domain: "shielded-earth-5066.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "easysurveyapp@gmail.com",
@@ -92,5 +94,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  HOST = "http://floating-fortress-5386.herokuapp.com"
+  ENV["HOST"] = "http://shielded-earth-5066.herokuapp.com/"
+  ENV["PROTOCOL"] = "http"
+  ENV["LOG_IT"] = "true"
+  
+  config.action_mailer.default_url_options = {:host => ENV["HOST"]}
+#  default_url_options[:host] = ENV["HOST"]
+
+  config.action_controller.asset_host = "localhost:3000"
 end
