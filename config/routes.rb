@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  
+
   controllers = {
       :registrations      => "registrations",
       :sessions           => "sessions"
@@ -13,6 +15,6 @@ Rails.application.routes.draw do
 
   get 'questions/index' , :as => "questions"
 
-  get 'dashboard' => 'dashboard#index' , :as => "dashboard"
+  get 'dashboard/index', :as => "dashboard"
 
 end

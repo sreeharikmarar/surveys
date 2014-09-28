@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 # Use sqlite3 as the database for Active Record
+gem 'mysql2'
+
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -12,9 +14,7 @@ gem 'devise'
 
 group :assets do
   gem 'therubyracer', :platforms => :ruby
-  gem 'less-rails'
-  gem 'less'
- 
+  
   gem 'coffee-rails', '~> 4.0.0'
   gem 'execjs'
   
@@ -22,11 +22,12 @@ group :assets do
   
 
   gem 'uglifier', '>= 1.3.0'
+  
 end
 
 gem "simple_form"
 
-gem "twitter-bootstrap-rails"
+
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .js.coffee assets and views
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -64,6 +65,4 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-ruby "2.1.1"
 

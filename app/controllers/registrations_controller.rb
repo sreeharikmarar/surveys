@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to user_session_path
       flash[:notice] = "You have Successfully Registered with Us.Please verify your mail to get in"
     else
-      flash.now[:errors] = @user.errors
+      flash[:errors] = @user.errors
       render :new 
     end
   end

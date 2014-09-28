@@ -1,0 +1,12 @@
+
+<h1><%= @survey.title %></h1>
+
+<p><b><%= @survey.description %></b></p>
+
+<h3>Questions</h3>
+
+<% @survey.questions.each_with_index do |question,index| %>
+
+<%= "#{index+1}, #{question.text}" %> </br>
+
+<% end %>

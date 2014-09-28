@@ -1,0 +1,49 @@
+<div class="span8" style="padding:10px;">
+    <%= simple_form_for(@survey , :as => :survey, url: { action: "create" } ,  :role => "form" , :html=>{:class=>""} ) do |f| %>
+    <%= f.error_notification %>
+
+          <%= f.input :title, :label =>false,  :input_html=> { :class=> '' ,:style=>"width:100%;margin-top:5px;"}, :required => true, :placeholder=>"* Title" %>        
+        
+          <%= f.input :description, :label =>false, :required => true, :placeholder=>"* description", input_html: { :class=> '' ,:style=>"width:100%;margin-top:5px;height:50px;" } %>
+          
+        <%= f.simple_fields_for :questions do |c|  %>
+          
+           <%= c.input :text, :label =>false, :required => true, :placeholder=>"* Question #{c.index+1}", input_html: { :class=> '' ,:style=>"width:100%;margin-top:5px;margin-top:5px;"} %>
+
+           <%= c.input :type, :required => true, :as => :select, :label=>false, :collection =>@types, :prompt => "Please Select",:input_html=>{ :onchange => "showOptions(this,"+"#{c.index});", :class=>"" , :style=>"margin-top:5px;"} %>
+
+           <div id="option_<%= c.index %>" style="display:none;margin-top:5px;">
+              <%= c.simple_fields_for :option_attributes  do |o|  %>
+
+                 <%= o.input :option_1, :required => true, :label =>false, :placeholder=>"* Option 1" %>
+
+                 <%= o.input :option_2, :required => true,:label =>false, :placeholder=>"* Option 2" %>
+
+                 <%= o.input :option_3, :required => true,:label =>false,  :placeholder=>"* Option 3" %>
+
+                 <%= o.input :option_4, :required => true, :label =>false, :placeholder=>"* Option 4" %>
+            <% end %>
+          </div>
+
+        <% end %>
+        
+        <div class="form-actions">
+          <%= f.submit "Sign In", :id=> "", :class=>"btn btn-sml btn-primary", :style=>"margin-top:10px; ", "data-loading-text"=>"Signing In..." %>
+       </div>
+      
+    <% end %>
+
+</div>
+
+<script type="text/javascript">
+
+  function showOptions(obj,id){
+    
+    if(obj.value == "MultipleChoiceSingleQuestion" || obj.value == "MultipleChoiceMultipleQuestion")
+      $("#option_"+id).show();
+    else
+      $("#option_"+id).hide();
+  }
+
+
+</script>

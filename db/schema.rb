@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140927080209) do
 
   create_table "options", force: true do |t|
     t.integer "question_id"
+    t.string  "type"
     t.string  "option_1"
     t.string  "option_2"
     t.string  "option_3"
@@ -43,13 +44,14 @@ ActiveRecord::Schema.define(version: 20140927080209) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "username",             default: "", null: false
-    t.string   "email",                default: "", null: false
-    t.string   "encrypted_password",   default: "", null: false
+    t.string   "username",             default: "",    null: false
+    t.string   "email",                default: "",    null: false
+    t.string   "encrypted_password",   default: "",    null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "is_admin",             default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

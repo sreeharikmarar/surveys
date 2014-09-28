@@ -31,7 +31,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.boolean :is_admin, null: false, default: false
       t.timestamps
     end
 
@@ -42,10 +42,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
   end
 
   def down
-    remove_index :users, :username,             unique: true
-    remove_index :users, :email,                unique: true
-    remove_index :users, :confirmation_token,   unique: true
+    # remove_index :users, :username,             unique: true
+    # remove_index :users, :email,                unique: true
+    # remove_index :users, :confirmation_token,   unique: true
 
-    drop_table :users
+    # drop_table :users
   end
 end
