@@ -3,11 +3,10 @@
 <div class="span10" style="margin-top:10px;">
 <% Survey.all.each do |survey| %>
 
-<div class="well" style="float-left;padding:10;margin-left:10px;width:190px;">
+<div class="well" style="float:left;padding:10;margin-left:10px;width:190px;">
  	<div align="center"><b><%= survey.title %></b></div>
  	<div style="padding-top:50px;">
 		<%= link_to "take survey" , "#" %> 
-		
 	</div> 
 </div>
 
