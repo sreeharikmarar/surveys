@@ -6,33 +6,33 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<div class="navbar navbar-inverse navbar-static-top">
+<body background="/assets/back.png" >
+  <div class="navbar navbar-inverse navbar-static-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="/">Survey</a>
-        <div class="nav-collapse">
-        <% if user_signed_in? %>
-          <ul class="nav pull-right">
-             <li><%= link_to "sign out" , destroy_user_session_path , :method => :delete %></li> 
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Surveys</a>
+        </div>
+        <div class="navbar-collapse collapse">
+         <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "sign out" , destroy_user_session_path , :method => :delete %></li>
           </ul>
-          <% else %>
-          <ul class="nav pull-right">
-             <li><%= link_to "Sign In" , user_session_path %></li> 
-             <li><%= link_to "Sign Up" , new_user_registration_path %></li> 
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Sign In" , user_session_path %></li> 
+            <li><%= link_to "Sign Up" , new_user_registration_path %></li>
           </ul>
           <% end %>
-
         </div>
       </div>
     </div>
 </div>
 
 
-<div class="container " style="margin-top:30px;min-height:780px;">
+<div class="container " style="margin-top:40px;min-height:780px;">
     <div class="row-fluid">
-      
       
         <%= yield %>
       
