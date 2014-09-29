@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   devise_for :users , :controllers => controllers
 
-  resources :survey
+  resources :survey do
+  	resources :feedbacks
+  end
 
   root 'home#index'
 

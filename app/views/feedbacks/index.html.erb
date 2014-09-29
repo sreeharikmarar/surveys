@@ -1,0 +1,30 @@
+
+<div class="container" style="background-color:#fff" >
+<h1>All Feedbacks</h1>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Feedback </th>
+          <th>Description</th>
+          <th>Options</th>
+        </tr>
+    </thead>
+
+	<tbody>
+		<% @feedbacks.each do |feedback| %>
+
+  		<tr>
+    		<td><%= feedback.survey.title %></td>
+    		<td><%= feedback.survey.description %></td>
+    		<td><%= link_to 'Show', survey_feedback_path(feedback.survey,feedback) %>
+    		<%= link_to 'Edit', edit_survey_feedback_path(feedback.survey,feedback) , :style=> "margin-left:10px;" %>
+    		<%= link_to 'Destroy', survey_feedback_path(feedback.survey,feedback) , method: :delete, data: { confirm: 'Are you sure?' }, :style=> "margin-left:10px;" %></td>
+  		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+</div>
+

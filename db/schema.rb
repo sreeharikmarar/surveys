@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20140928185731) do
 
   create_table "options", force: true do |t|
     t.integer "question_id"
-    t.string  "type"
     t.string  "option_1"
     t.string  "option_2"
     t.string  "option_3"
@@ -58,8 +57,6 @@ ActiveRecord::Schema.define(version: 20140928185731) do
   create_table "surveys", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.boolean  "is_published",    default: false
-    t.integer  "no_of_questions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

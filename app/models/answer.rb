@@ -6,5 +6,6 @@ class Answer < ActiveRecord::Base
 	
 	belongs_to :feedback , :class_name => "Feedback"
 
+	validates :answer , :presence => true
 
 end
