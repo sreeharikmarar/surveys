@@ -2,7 +2,9 @@ class Question < ActiveRecord::Base
 
 	belongs_to :survey , :class_name => "Survey"
 
-	has_one :option 
+	has_many :answers , :class_name => "Answer" , :dependent => :destroy
+
+	has_one :option , :dependent => :destroy
 	
 	accepts_nested_attributes_for :option , allow_destroy: true
 

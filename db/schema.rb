@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927080209) do
+ActiveRecord::Schema.define(version: 20140928185731) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "feedback_id"
+    t.string   "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["feedback_id"], name: "index_answers_on_feedback_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "feedbacks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feedbacks", ["survey_id"], name: "index_feedbacks_on_survey_id", using: :btree
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "options", force: true do |t|
     t.integer "question_id"
