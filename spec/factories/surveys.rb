@@ -5,6 +5,6 @@ FactoryGirl.define do
 
   	sequence(:title) {|n| " Sample survey #{n}" }
   	description "loren ibsum loren ibsum loren ibsum"
-
+  	
   end
 end
