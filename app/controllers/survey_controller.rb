@@ -1,6 +1,6 @@
 class SurveyController < ApplicationController
 
-  # before_action :require_user
+  before_action :authenticate_user! , :authenticate_admin
 
   def index
 
@@ -48,7 +48,7 @@ class SurveyController < ApplicationController
     @survey = Survey.find_by_id(params[:id])
     
     respond_to do |format|
-      if @Survey.update_attributes survey_params
+      if @survey.update_attributes survey_params
         format.html { redirect_to @survey }
       else
         format.html { render :new }

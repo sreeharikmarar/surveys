@@ -3,11 +3,10 @@
 <div class="span10" style="margin-top:10px;">
 <% Survey.all.each do |survey| %>
 
-<div class="well" style="float-left;padding:10;margin-left:10px;width:190px;">
- 	<div align="center"><b><%= survey.title %></b></div>
- 	<div style="padding-top:50px;">
-		<%= link_to "take survey" , new_survey_feedback_path(survey) %> 
-		
+<div class="well" style="float:left;margin-left:10px;width:200px;background-image: url('/assets/survey_mini.jpg')">
+    <h4 align="center"><%= survey.title %></h4>
+ 	<div style="padding-top:50px;" align="center">
+		<%= link_to "Take Survey" , new_survey_feedback_path(survey) %> 
 	</div> 
 </div>
 

@@ -1,20 +1,22 @@
 <h1>All Surveys</h1>
 
+
+<div class="container">
+
 <%= link_to "create Survey" , new_survey_path , :class=>"btn btn-medium btn-success" ,:style=>"float:right;margin-top:-35px;margin-right:20px;" %>
 
 
 
-<div class="span10" style="margin-top:10px;">
-<% Survey.all.each do |survey| %>
 
-<div class="panel" style="float:left;margin-left:10px;width:190px;">
- 	<div align="center"><b><%= survey.title %></b></div>
+<% Survey.all.each do |survey| %>
+<div class="well" style="float:left;margin-left:10px;width:200px;background-image: url('/assets/survey_mini.jpg')">
+ 	<h4 align="center"><%= survey.title %></h4>
  	<div style="padding-top:50px;">
 		<%= link_to "show" , survey_path(:id => survey.id) %> 
 		<%= link_to "edit" , edit_survey_path(:id => survey.id) ,:style=>"margin-left:25px;"%> 
-		<%= link_to "delete" , survey_path(:id => survey.id) , :method => :delete , :confirm => true ,:style=>"margin-left:25px;"%>
+		<%= link_to "delete" , survey_path(:id => survey.id) , :method => :delete , :confirm => "Are you sure" ,:style=>"margin-left:25px;"%>
 	</div> 
 </div>
 
 <% end %>
-</div>
+

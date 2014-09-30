@@ -1,24 +1,28 @@
-<div class="container" style="background-color:#fff" >
+<div class="container" style="background-color:#fff;height:inherit;background-image: url('/assets/linedpaper.png');background-repeat:repeat;padding-bottom:30px;";>
 
-<h1><%= @feedback.survey.title %></h1>
-<p><b><%= @feedback.survey.description %></b></p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-          <th>Questions</th>
-          <th>Answers</th>
-        </tr>
-    </thead>
 
-	<tbody>
+<div style="margin-left:40px;">
 
-		<% @feedback.answers.each do |answer| %>
-			<tr>
-				<td><%= answer.question.text %></td>
-				<td><%= answer.answer %></td>
-			</tr>
+		<h1 style="color:#000"><%= @feedback.survey.title %></h1>
+		<p><b><%= "{ #{@feedback.survey.description} }" %> </b></p>
+
+		<div style="font-style:italice;color:#0088cc;">
+			<span>Taken By : </span>
+			<b><%= @feedback.user.username %></b>
+		</div>
+
+		<div style="margin-top:20px;">
+		<% @feedback.answers.each_with_index do |answer,index| %>
+			
+				<h4><%= "#{index+1}, #{answer.question.text}" %></h4>
+				<% if answer.question.multiple_choice_multiple? %>
+					<p style="margin-left:20px;font-style:italic;"><%= answer.answer.join(",") %></p>
+				<% else %>
+					<p style="margin-left:20px;font-style:italic;"><%= answer.answer %></p>
+				<% end %>
+			
 		<% end %>
-	</tbody>
-</table>
+		</div>	
+</div>
 </div>

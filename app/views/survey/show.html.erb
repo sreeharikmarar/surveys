@@ -1,7 +1,21 @@
 
-<h1><%= @survey.title %></h1>
 
-<p><b><%= @survey.description %></b></p>
+
+<div class="container" style="background-color:#fff;height:inherit;background-image: url('/assets/linedpaper.png');background-repeat:repeat;padding-bottom:30px;";>
+
+<h1 style="color:#666"><%= @survey.title %></h1>
+
+
+<%= link_to "Delete" , survey_path(:id => @survey.id) , :method => :delete , :class=>"pull-right", :confirm => "Are you sure?" ,:style=>"margin-left:25px;"%>
+
+<%= link_to "Edit" , edit_survey_path(:id => @survey.id) ,:class=>"pull-right",:style=>"margin-left:25px;"%> 
+
+<%= link_to 'Show all Responses', survey_feedbacks_path(@survey) , :class=> "pull-right "%>
+
+
+<div style="margin-left:40px;">
+
+<p><b><%= "{ #{@survey.description} }" %></b></p>
 
 <h3>Questions</h3>
 
@@ -10,3 +24,6 @@
 <%= "#{index+1}, #{question.text}" %> </br>
 
 <% end %>
+
+</div>
+</div>

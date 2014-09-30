@@ -1,12 +1,13 @@
 
 <div class="container" style="background-color:#fff" >
-<h1>All Feedbacks</h1>
+<h1 style="color:#fff">All Feedbacks</h1>
 
+<% if @feedbacks.any? %>
 <table class="table table-striped">
       <thead>
         <tr>
-          <th>Feedback </th>
-          <th>Description</th>
+          <th>User </th>
+          <th>Email</th>
           <th>Options</th>
         </tr>
     </thead>
@@ -15,16 +16,21 @@
 		<% @feedbacks.each do |feedback| %>
 
   		<tr>
-    		<td><%= feedback.survey.title %></td>
-    		<td><%= feedback.survey.description %></td>
-    		<td><%= link_to 'Show', survey_feedback_path(feedback.survey,feedback) %>
-    		<%= link_to 'Edit', edit_survey_feedback_path(feedback.survey,feedback) , :style=> "margin-left:10px;" %>
-    		<%= link_to 'Destroy', survey_feedback_path(feedback.survey,feedback) , method: :delete, data: { confirm: 'Are you sure?' }, :style=> "margin-left:10px;" %></td>
+    		<td><%= feedback.user.username %></td>
+    		<td><%= feedback.user.email %></td>
+    		<td><%= link_to 'View Response', survey_feedback_path(feedback.survey,feedback) %>
+    		</td>
   		</tr>
 		<% end %>
 	</tbody>
 
 </table>
+
+<% else %>
+  <div align="center" class="alert alert-info" style="height:100px;">
+  No one has responded to this survey
+  </div>
+<% end %>
 
 </div>
 

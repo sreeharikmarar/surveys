@@ -1,14 +1,22 @@
-<div class="span8" style="padding:10px;">
-    <%= simple_form_for(@survey , :as => :survey, url: { action: "create" } ,  :role => "form" , :html=>{:class=>""} ) do |f| %>
-    <%= f.error_notification %>
+<% 
+  path = @survey.new_record? ? survey_index_path : survey_path 
+%>
 
-          <%= f.input :title, :label =>false,  :input_html=> { :class=> '' ,:style=>"width:100%;margin-top:5px;"}, :required => true, :placeholder=>"* Title" %>        
+<div class="container" style="height:inherit;background-color:#fff;background-image: url('/assets/linedpaper.png');background-repeat:repeat;";>
+
+
+<div style="padding-top:20px;padding-bottom:50px;margin-left:40px;">
+
+    <%= simple_form_for(@survey , :as => :survey, :url => path ,  :role => "form" , :html=>{:class=>""} ) do |f| %>
         
-          <%= f.input :description, :label =>false, :required => true, :placeholder=>"* description", input_html: { :class=> '' ,:style=>"width:100%;margin-top:5px;height:50px;" } %>
+
+          <%= f.input :title, :label =>false,  :input_html=> { :class=> '' ,:style=>"width:60%;margin-top:5px;height:30px;"}, :required => true, :placeholder=>"* Title" %>        
+        
+          <%= f.input :description, :label =>false, :required => true, :as => :text , :placeholder=>"* description", input_html: { :class=> '' ,:style=>"width:60%;margin-top:5px;height:60px;" } %>
           
         <%= f.simple_fields_for :questions do |c|  %>
           
-           <%= c.input :text, :label =>false, :required => true, :placeholder=>"* Question #{c.index+1}", input_html: { :class=> '' ,:style=>"width:100%;margin-top:5px;margin-top:5px;"} %>
+           <%= c.input :text, :label =>false, :required => true, :placeholder=>"* Question #{c.index+1}", input_html: { :class=> '' ,:style=>"width:60%;margin-top:5px;height:30px;"} %>
 
            <%= c.input :type, :required => true, :as => :select, :label=>false, :collection =>@types, :prompt => "Please Select",:input_html=>{ :onchange => "showOptions(this,"+"#{c.index});", :class=>"" , :style=>"margin-top:5px;"} %>
 
@@ -33,6 +41,7 @@
       
     <% end %>
 
+</div>
 </div>
 
 <script type="text/javascript">

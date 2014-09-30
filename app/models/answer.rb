@@ -6,8 +6,6 @@ class Answer < ActiveRecord::Base
 	
 	belongs_to :feedback , :class_name => "Feedback"
 
-	validates :feedback , :presence => true
-
 	validates :question , :presence => true
 
 	validates :answer , :presence => true 
@@ -27,11 +25,11 @@ class Answer < ActiveRecord::Base
 		when "DateQuestion"	
 			answer.to_date rescue errors.add(:answer, "Your answer should be a Date value")
 		when "EssayQuestion"
-		    errors.add(:answer, "Your answer should contain atleast 50 characters") if answer.blank? || answer.length < 50 
+		    errors.add(:answer, "Your answer should contain atleast 20 characters") if answer.blank? || answer.length < 20 
 		when "MultipleChoiceSingleQuestion"
-			puts " from model #{question.option_list}"
-			puts " from model #{answer}"
-			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer.to_s)
+			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer)
+		when "MultipleChoiceMultipleQuestion"
+			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer.sample)
 		end
 	end
 end

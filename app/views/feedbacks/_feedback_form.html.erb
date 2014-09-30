@@ -3,57 +3,55 @@
   path = @feedback.new_record? ? survey_feedbacks_path : survey_feedback_path 
 %>
 
-<div class="container" style="background-color:#fff;color:#000" >
+<div class="container" style="height:inherit;background-color:#fff;background-image: url('/assets/linedpaper.png');background-repeat:repeat;";>
+
+
+<div style="padding-top:20px;padding-bottom:50px;margin-left:40px;">
+
+
+
+<h1 style="color:#000"><%= @feedback.survey.title %></h1>
+<p><b><%= "{ #{@feedback.survey.description} }" %> </b></p>
 
    <%= simple_form_for(@feedback , :as => :feedback, :url => path ,  :role => "form" ) do |f| %>
    
-  
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Question </th>
-          <th>Type</th>
-          <th>Answer</th>
-        </tr>
-    </thead>
 
     <%= f.input :survey_id , :as => :hidden , :input_html => {:value => @survey.id } %>
+    <%= f.input :user_id , :as => :hidden , :input_html => {:value => current_user.id } %>
     
-    <tbody>
-
     
       <%= f.simple_fields_for :answers do |q| %>
         
             <%= q.input :question_id , :as => :hidden , :input_html => { :value => @survey.questions[q.index].id } %>
-
-             <%= q.input :feedback_id , :as => :hidden , :input_html => { :value => @feedback.id } %>
-
-            <tr>
-                <td><%= @survey.questions[q.index].text %></td>
-                <td><%= @survey.questions[q.index].type %></td>
                 
-                <% if @survey.questions[q.index].type == "DateQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :input_html => {:class=> "datepicker"} %>
-                <% elsif @survey.questions[q.index].type == "EssayQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as => :text %>
-                <% elsif @survey.questions[q.index].type == "MultipleChoiceSingleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :radio_buttons , :collection => ["asa","asass","asass"] %>
-                <% else @survey.questions[q.index].type == "MultipleChoiceMultipleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :check_boxes , :collection => ["one","two","thrid"] %>
+            
+              <h4><%= "#{q.index+1}, #{ @survey.questions[q.index].text}" %></h4>
+                
+                <% case @survey.questions[q.index].type 
+
+                when "DateQuestion" %>
+                  <%= q.input :answer, :required => true, :label=>false , :as => :string, :placeholder => "please selct a date from the calender",:input_html => {:class=> "datepicker" ,:style=>"width:400px;height:30px;"} %>
+                <% when "EssayQuestion" %>
+                  <%= q.input :answer, :required => true, :placeholder => "Yor answer should contain aleast 20 letters", :label=>false , :as => :text , :input_html => {:style=>"width:600px;height:100px;"} %>
+                <% when "NumericQuestion" %>
+                  <%= q.input :answer, :required => true, :placeholder => "please enter a number" , :as => :string , :label=>false , :input_html => {:style=>"width:600px;height:30px;"}%>
+                <% when "MultipleChoiceSingleQuestion" %>
+                  <%= q.input :answer, :required => true,  :label=>false , :as=> :radio_buttons , :collection => @survey.questions[q.index].option_list %>
+                <% when "MultipleChoiceMultipleQuestion" %>
+                  <%= q.input :answer, :required => true,  :label=>false , :as=> :check_boxes , :collection => @survey.questions[q.index].option_list %>
                 <% end %>
                 
-                </td>
-            </tr>
       <% end %>
-    </tbody>
-  </table>
 
-<div class="form-actions">
-          <%= f.submit "Save", :id=> "", :class=>"btn btn-sml btn-primary", :style=>"margin-top:10px; ", "data-loading-text"=>"Signing In..." %>
-       </div>
+
+          <%= f.submit "Submit Survey", :id=> "", :class=>"btn btn-lg btn-inverse", :style=>"margin-top:40px; ", "data-loading-text"=>"Signing In..." %>
+      
 <% end %>
+</div>
 </div>
 
 <script type="text/javascript">
-$('.datepicker').datepicker()
+$('.datepicker').datepicker({format: 'dd/mm/yyyy'})
 </script>
+
+

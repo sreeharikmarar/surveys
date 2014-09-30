@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  before_action :require_user
+  # before_action :require_user
   
   def index
   	@surveys = Survey.all

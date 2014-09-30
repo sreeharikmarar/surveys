@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'questions/index' , :as => "questions"
+  # get 'questions/index' , :as => "questions"
 
-  get 'dashboard/index', :as => "dashboard"
+  # get 'dashboard/index', :as => "dashboard"
 
 end

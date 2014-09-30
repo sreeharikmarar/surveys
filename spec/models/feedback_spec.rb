@@ -116,9 +116,26 @@ RSpec.describe Feedback, :type => :model do
 
 	    	it "should create a multiple choice single answer from the option" do
 	      		answer = FactoryGirl.build(:multiple_choice_single_answer , :feedback => @feedback)
-	      		puts "#{answer.question.option_list} >>>>>>"
-	      		puts "#{answer.answer} >>>>>>>"
 	      		answer.answer = "invalid choice"
+	      		answer.should_not be_valid
+	      		expect(answer.errors[:answer].count).to eq(1)
+	    	end
+    	end
+
+    	describe "while saving feedback with multiple choice Multiple answer" do
+
+    		before :each do 
+				@feedback = FactoryGirl.create(:feedback)
+			end
+
+    		it "should create a valid multiple choice single answer" do
+	      		answer = FactoryGirl.build(:multiple_choice_multiple_answer , :feedback => @feedback)
+	      		answer.should be_valid
+	    	end
+
+	    	it "should create a multiple choice multiple answer from the option" do
+	      		answer = FactoryGirl.build(:multiple_choice_multiple_answer , :feedback => @feedback)
+	      		answer.answer = ["invalid choice"]
 	      		answer.should_not be_valid
 	      		expect(answer.errors[:answer].count).to eq(1)
 	    	end

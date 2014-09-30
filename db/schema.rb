@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140928185731) do
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.integer  "feedback_id"
-    t.string   "answer"
+    t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

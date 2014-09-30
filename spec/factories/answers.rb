@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :answer do
   	feedback
   	association :question, factory: :multiple_choice_single_question
-  	answer "choice_1"
+  	answer "choice 1"
 
   	factory :date_answer do
   		association :question, factory: :date_question
@@ -30,12 +30,12 @@ FactoryGirl.define do
 
   	factory :multiple_choice_single_answer do
   		association :question, factory: :multiple_choice_single_question
-  		["choice_1","choice_2","choice_3","choice_4"].sample
+  		answer ["choice 1","choice 2","choice 3","choice 4"].sample
     end
 
     factory :multiple_choice_multiple_answer do
     	association :question, factory: :multiple_choice_multiple_question
-  		["choice_1","choice_2","choice_3","choice_4"].sample([*1..3].sample)
+  		answer ["choice 1","choice 2","choice 3","choice 4"].sample([*1..3].sample)
     end
 
   end

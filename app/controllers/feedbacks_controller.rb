@@ -1,20 +1,23 @@
 class FeedbacksController < ApplicationController
 
-	before_action :authenticate_user!
+	before_filter :authenticate_user! 
+  
 	
 	def index
-		@feedbacks = Feedback.all
+    @survey = Survey.find_by_id(params[:survey_id])
+		@feedbacks = @survey.feedbacks
 	end
 
 	def new
-		@survey = Survey.find(params[:survey_id])
+		  @survey = Survey.find(params[:survey_id])
     	@feedback = Feedback.find_by_survey_id_and_user_id(@survey.id, current_user.id)
+    
     	if @feedback
       		flash[:notice] = "You have already taken this survey."
       		redirect_to survey_feedback_path(@survey, @feedback)
     	else
       		@feedback = @survey.feedbacks.build
-      		5.times { @feedback.answers.build }
+          5.times { @feedback.answers.build }
     	end
 	end
 
