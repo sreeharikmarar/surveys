@@ -3,7 +3,7 @@
   path = @feedback.new_record? ? survey_feedbacks_path : survey_feedback_path 
 %>
 
-<div class="container" style="background-color:#fff" >
+<div class="container" style="background-color:#fff;color:#000" >
 
    <%= simple_form_for(@feedback , :as => :feedback, :url => path ,  :role => "form" ) do |f| %>
    

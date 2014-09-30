@@ -17,9 +17,28 @@ class Question < ActiveRecord::Base
 	end
 
 	def check_multiple_question
-		# %w[MultipleChoiceSingleQuestion MultipleChoiceMultipleQuestion].include?(self.type)
 		%w[NumericQuestion DateQuestion EssayQuestion].include?(self.type)
 	end
+
+	def numeric_question?
+		type == "NumericQuestion"
+	end
 	
+	def date_question?
+		type == "DateQuestion"
+	end
+
+	def essay_question?
+		type == "EssayQuestion"
+	end
+
+	def multiple_choice_single?
+		type == "MultipleChoiceSingleQuestion"
+	end
+
+	def multiple_choice_multiple?
+		type == "MultipleChoiceMultipleQuestion"
+	end
+
 end
 
