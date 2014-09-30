@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     unless current_user && current_user.is_admin?
-      flash[:notice] = "Access restricted"
+      flash[:notice] = "You dont have permission to Access this page"
       redirect_to root_url and return false
     end
   end

@@ -35,12 +35,6 @@ RSpec.describe Feedback, :type => :model do
 	      		answer.should be_valid
 	    	end
 
-	    	it "should not save without a feedback" do
-	      		answer = FactoryGirl.build(:answer , :feedback => nil)
-	      		answer.should_not be_valid
-	      		expect(answer.errors[:feedback].count).to eq(1)
-	    	end
-
     	end
 
     	describe "while saving feedback with date answer" do
