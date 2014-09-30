@@ -51,7 +51,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "shielded-earth-5066.herokuapp.com",
+    domain: "http://easysurvey.herokuapp.com/",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "easysurveyapp@gmail.com",
@@ -94,12 +94,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  ENV["HOST"] = "http://shielded-earth-5066.herokuapp.com/"
+  ENV["HOST"] = "http://easysurvey.herokuapp.com/"
   ENV["PROTOCOL"] = "http"
   ENV["LOG_IT"] = "true"
   
   config.action_mailer.default_url_options = {:host => ENV["HOST"]}
 #  default_url_options[:host] = ENV["HOST"]
 
-  config.action_controller.asset_host = "localhost:3000"
+  config.action_controller.asset_host = "http://easysurvey.herokuapp.com/"
 end
