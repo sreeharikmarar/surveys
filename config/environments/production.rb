@@ -101,5 +101,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {:host => ENV["HOST"]}
 #  default_url_options[:host] = ENV["HOST"]
 
-  config.action_controller.asset_host = "http://easysurvey.herokuapp.com/"
+  # config.action_controller.asset_host = "http://easysurvey.herokuapp.com/"
 end
