@@ -20,7 +20,7 @@ class Question < ActiveRecord::Base
 		%w[NumericQuestion DateQuestion EssayQuestion].include?(self.type)
 	end
 
-	def numeric_question?
+	def self.numeric_question?
 		type == "NumericQuestion"
 	end
 	
@@ -38,6 +38,10 @@ class Question < ActiveRecord::Base
 
 	def multiple_choice_multiple?
 		type == "MultipleChoiceMultipleQuestion"
+	end
+
+	def option_list
+		option.option_list
 	end
 
 end

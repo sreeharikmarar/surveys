@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   describe User do
 
+    
+
   	it "should create a valid user" do
-      user =  FactoryGirl.create(:user) 
-      user.should be_valid
+      @user = FactoryGirl.create(:user) 
+      @user.should be_valid
     end
 
     describe "email" do
@@ -25,11 +27,11 @@ RSpec.describe User, :type => :model do
       end
 
       it "should check uniquness of email address" do
-      	user = FactoryGirl.create(:user)
-	    dup_user = user.dup
-	    dup_user.valid?
-	    expect(dup_user.errors[:email].size).to eq(1)
-	    expect(dup_user.errors[:email]).to eq(["has already been taken"])
+         user = FactoryGirl.create(:user)
+	       dup_user = user.dup
+	       dup_user.valid?
+	       expect(dup_user.errors[:email].size).to eq(1)
+	       expect(dup_user.errors[:email]).to eq(["has already been taken"])
       end
 
     end  
@@ -72,37 +74,34 @@ RSpec.describe User, :type => :model do
 
 
       it "should check uniquness of username" do
-      	user = FactoryGirl.create(:user)
-	    dup_user = user.dup
-	    dup_user.valid?
-	    expect(dup_user.errors[:username].size).to eq(1)
-	    expect(dup_user.errors[:username]).to eq(["has already been taken"])
+         user = FactoryGirl.create(:user)
+	       dup_user = user.dup
+	       dup_user.valid?
+	       expect(dup_user.errors[:username].size).to eq(1)
+	       expect(dup_user.errors[:username]).to eq(["has already been taken"])
       end
     end
 
     describe "sign up process" do
 
     	before { ActionMailer::Base.deliveries = [] }
+      before { @user = FactoryGirl.create(:user, :username =>"sample" ,:email => "sample@sample.com" , :password => "password")}
 
     	it "should create encrypted password" do
-      		user = FactoryGirl.create(:user)
-      		user.encrypted_password.should_not be_blank 
-
+      		@user.encrypted_password.should_not be_blank 
     	end
 
     	it "should create confirmation token " do
-    		user = FactoryGirl.create(:user)
-      		user.confirmation_token.should_not be_blank 
+      	@user.confirmation_token.should_not be_blank 
     	end
 
     	it "should send a confirmation mail" do
-    		user = FactoryGirl.create(:user, :username =>"sample" ,:email => "sample@sample.com" , :password => "password")
     		emails = []
   				ActionMailer::Base.deliveries.each do |m|
     			emails << m.to
   			end
   			ActionMailer::Base.deliveries.should_not be_empty
-    		expect(emails).to include([user.email])
+    		expect(emails).to include([@user.email])
     	end
   	end
 

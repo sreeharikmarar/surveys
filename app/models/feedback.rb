@@ -7,5 +7,6 @@ class Feedback < ActiveRecord::Base
 
 	accepts_nested_attributes_for :answers , allow_destroy: true
 
-	
+	validates :survey , :presence => true
+	validates :user , :presence => true
 end

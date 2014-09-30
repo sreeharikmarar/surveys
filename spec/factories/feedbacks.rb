@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :feedback do
+  	survey
+  	user
   end
 end
