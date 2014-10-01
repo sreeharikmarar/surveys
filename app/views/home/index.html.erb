@@ -1,4 +1,4 @@
-<% if @surveys.any? %>
+
 <h3 align="center" style="color:#fff;">All Active Surveys</h3>
 
 
@@ -8,7 +8,7 @@
 <%= link_to "create Survey" , new_survey_path , :class=>"btn btn-medium btn-success" ,:style=>"float:right;margin-top:-35px;margin-right:20px;" %>
 <% end %>
 
-
+<% if @surveys.any? %>
 <% @surveys.each do |survey| %>
 
 <div class="well" style="float:left;margin-left:10px;width:200px;background-image: url('/assets/survey_mini.jpg')">
@@ -28,6 +28,10 @@
 
 
 <% end %>
+<% else %>
+<div class="alert alert-warning">
+	No survey has been created yet 
 </div>
-
 <% end %>
+
+</div>

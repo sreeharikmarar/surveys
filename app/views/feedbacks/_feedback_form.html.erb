@@ -13,7 +13,7 @@
 <h1 style="color:#000"><%= @feedback.survey.title %></h1>
 <p><b><%= "{ #{@feedback.survey.description} }" %> </b></p>
 
-   <%= simple_form_for(@feedback , :as => :feedback, :url => path ,  :role => "form" ) do |f| %>
+   <%= simple_form_for(@feedback , :as => :feedback, :url => path ,  :role => "form", :html=>{:class=>"form-signin", :style=>"max-width:100%;"} ) do |f| %>
    
 
     <%= f.input :survey_id , :as => :hidden , :input_html => {:value => @survey.id } %>
@@ -30,15 +30,15 @@
                 <% case @survey.questions[q.index].type 
 
                 when "DateQuestion" %>
-                  <%= q.input :answer, :required => true, :label=>false , :as => :string, :placeholder => "please selct a date from the calender",:input_html => {:class=> "datepicker" ,:style=>"width:400px;height:30px;"} %>
+                  <%= q.input :answer, :required => true, :label=>false , :as => :string, :placeholder => "please selct a date from the calender",:input_html => {:class=> "form-control datepicker" ,:style=>"width:400px;"} %>
                 <% when "EssayQuestion" %>
-                  <%= q.input :answer, :required => true, :placeholder => "Yor answer should contain aleast 20 letters", :label=>false , :as => :text , :input_html => {:style=>"width:600px;height:100px;"} %>
+                  <%= q.input :answer, :required => true, :placeholder => "Yor answer should contain aleast 20 letters", :label=>false , :as => :text , :input_html => {:class=> "form-control",:style=>"width:600px;height:100px;"} %>
                 <% when "NumericQuestion" %>
-                  <%= q.input :answer, :required => true, :placeholder => "please enter a number" , :as => :string , :label=>false , :input_html => {:style=>"width:600px;height:30px;"}%>
+                  <%= q.input :answer, :required => true, :placeholder => "please enter a number" , :as => :string , :label=>false , :input_html => {:class=> "form-control",:style=>"width:600px;"}%>
                 <% when "MultipleChoiceSingleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :radio_buttons , :collection => @survey.questions[q.index].option_list %>
+                  <%= q.input :answer, :required => true,  :label=>false , :as=> :radio_buttons , :collection => @survey.questions[q.index].option_list , :input_html => {:class=> "form-control"} %>
                 <% when "MultipleChoiceMultipleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :check_boxes , :collection => @survey.questions[q.index].option_list %>
+                  <%= q.input :answer, :required => true,  :label=>false , :as=> :check_boxes , :collection => @survey.questions[q.index].option_list , :input_html => {:class=> "form-control"}%>
                 <% end %>
                 
       <% end %>
