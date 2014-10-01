@@ -29,7 +29,8 @@ class Answer < ActiveRecord::Base
 		when "MultipleChoiceSingleQuestion"
 			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer)
 		when "MultipleChoiceMultipleQuestion"
-			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer.sample)
+			a = answer.first answer.size - 1
+			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(a.sample)
 		end
 	end
 end
