@@ -122,8 +122,9 @@ RSpec.describe Feedback, :type => :model do
 				@feedback = FactoryGirl.create(:feedback)
 			end
 
-    		it "should create a valid multiple choice single answer" do
+    		it "should create a valid multiple choice multiple answer" do
 	      		answer = FactoryGirl.build(:multiple_choice_multiple_answer , :feedback => @feedback)
+	      		answer.answer = ["choice 1","choice 2", ""]
 	      		answer.should be_valid
 	    	end
 
@@ -132,6 +133,13 @@ RSpec.describe Feedback, :type => :model do
 	      		answer.answer = ["invalid choice"]
 	      		answer.should_not be_valid
 	      		expect(answer.errors[:answer].count).to eq(1)
+	    	end
+
+	    	it "should create a multiple choice multiple answer from the option if params include empty string" do
+	      		answer = FactoryGirl.build(:multiple_choice_multiple_answer , :feedback => @feedback)
+	      		answer.answer = ["choice 1","choice 2", ""]
+	      		answer.should be_valid
+	      		expect(answer.errors[:answer].count).to eq(0)
 	    	end
     	end
 
