@@ -1179,6 +1179,7 @@ input[type="checkbox"] {
   margin-top: 1px \9;
   *margin-top: 0;
   line-height: normal;
+  display: inline;
 }
 
 input[type="file"],
@@ -1268,6 +1269,7 @@ textarea::-webkit-input-placeholder {
 .checkbox input[type="checkbox"] {
   float: left;
   margin-left: -20px;
+  display:inline;
 }
 
 .controls > .radio:first-child,

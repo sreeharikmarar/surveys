@@ -7,4 +7,25 @@
   */
 
 
-  
+.input .radio { display: inline-block;margin-left: 15px;font-weight: bold;}
+.input .checkbox { display: inline-block;margin-left: 15px;font-weight: bold;}
+
+.container { width: 940px;border-radius: 10px;}
+
+h1 { color: #fff; }
+
+.input .error { color: red;display: block;}
+
+.container .survey { border-radius:10px; }
+
+.input .control-label {
+	float: left;
+	display: inline;
+	margin-left: -100px;
+	margin-top: 10px
+}
+
+.breadcrumb { background-color: transparent;}
+.breadcrumb > li { text-shadow: 0 1px 0;} 
+
+.navbar .navbar-brand {color:#0088cc;margin-left: -40px;}

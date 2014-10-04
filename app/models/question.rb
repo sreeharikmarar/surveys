@@ -3,24 +3,30 @@ class Question < ActiveRecord::Base
 	belongs_to :survey , :class_name => "Survey"
 
 	has_many :answers , :class_name => "Answer" , :dependent => :destroy
+	accepts_nested_attributes_for :answers , allow_destroy: true 
 
-	has_one :option 
-	
-	accepts_nested_attributes_for :option , allow_destroy: true , :reject_if => :check_multiple_question
+	has_many :options , :class_name => "Option" , :dependent => :destroy 
 
+	accepts_nested_attributes_for :options , allow_destroy: true , :reject_if => :check_normal_question
+		
 	validates :text , :presence => true , :length => {:minimum => 1 , :maximum => 250 }
 	validates :type, :presence => true, :length => {:minimum => 1 , :maximum => 50 } 
 
+	validates :options , :presence => true , :if => :check_multiple_question
+
+	def check_normal_question
+		%w[EssayQuestion DateQuestion NumericQuestion].include?(type)
+	end
+
+	def check_multiple_question
+	  %w[MultipleChoiceSingleQuestion MultipleChoiceMultipleQuestion].include?(type)
+	end
 
 	def self.types
 		["EssayQuestion","DateQuestion","NumericQuestion","MultipleChoiceSingleQuestion","MultipleChoiceMultipleQuestion"]
 	end
 
-	def check_multiple_question
-		%w[NumericQuestion DateQuestion EssayQuestion].include?(self.type)
-	end
-
-	def self.numeric_question?
+	def numeric_question?
 		type == "NumericQuestion"
 	end
 	
@@ -41,7 +47,7 @@ class Question < ActiveRecord::Base
 	end
 
 	def option_list
-		option.option_list
+		options.map { | option| option.value }
 	end
 
 end

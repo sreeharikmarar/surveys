@@ -14,5 +14,7 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require datepicker
+ *= require general
+ *= require registrations
 
  */

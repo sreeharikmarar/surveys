@@ -1,58 +1,72 @@
+
 <% 
   path = @survey.new_record? ? survey_index_path : survey_path 
 %>
 
-<div class="container" style="height:inherit;background-color:#fff;background-image: url('/assets/linedpaper.png');background-repeat:repeat;";>
+<div class="container paper">
+
+
+<% if @survey.errors.any? %>
+  <div class="alert alert-error" style="margin-top:10px;">
+    <h3>Resolve the issues and try again </h3>
+    <% @survey.errors.messages.each do |key,value| %>
+       <% value = ["You should create atleast one option if you have selected a Multiple choice Question "] if key == "questions.options" %>
+      <span><b><%= "#{key}:" %></b> <%= "#{value.join(",")}"  %></span><br/>
+    <% end %>
+</div>
+<% end %>
 
 
 <div style="padding-top:20px;padding-bottom:50px;margin-left:40px;">
 
-    <%= simple_form_for(@survey , :as => :survey, :url => path ,  :role => "form" , :html=>{:class=>"form-signin", :style=>"max-width:100%;"} ) do |f| %>
+
+   
+
+    <%= simple_nested_form_for(@survey, :as => :survey , :url => path , :html => {:class => "form-signin" , :style=>"max-width:80%;"} ) do |f| %>
         
+            
+      <%= f.input :title, :input_html=> { :class=> "form-control" ,:style=>""}, :required => true, :placeholder=>"Title" %>
 
-          <%= f.input :title, :label =>false,  :input_html=> { :class=> "form-control" ,:style=>"width:60%;margin-top:5px;;"}, :required => true, :placeholder=>"* Title" %>        
-        
-          <%= f.input :description, :label =>false, :required => true, :as => :text , :placeholder=>"* description", input_html: { :class=> "form-control" ,:style=>"width:60%;margin-top:5px;;" } %>
-          
-        <%= f.simple_fields_for :questions do |c|  %>
-          
-           <%= c.input :text, :label =>false, :required => true, :placeholder=>"* Question #{c.index+1}", input_html: { :class=> "form-control" ,:style=>"width:60%;margin-top:5px;"} %>
-
-           <%= c.input :type, :required => true, :as => :select, :label=>false, :collection =>@types, :prompt => "Please Select your Question type",:input_html=>{ :onchange => "showOptions(this,"+"#{c.index});", :class=> "form-control" , :style=>"margin-top:5px;width:300px;"} %>
-
-           <div id="option_<%= c.index %>" style="display:none;margin-top:5px;">
-              <%= c.simple_fields_for :option_attributes  do |o|  %>
-
-                 <%= o.input :option_1, :required => true, :label =>false, :placeholder=>"* Option 1" , :input_html => {:class=> "form-control" , :style=>"width:300px;" } %>
-
-                 <%= o.input :option_2, :required => true,:label =>false, :placeholder=>"* Option 2" , :input_html => {:class=> "form-control",:style=>"width:300px;" }%>
-
-                 <%= o.input :option_3, :required => true,:label =>false,  :placeholder=>"* Option 3" , :input_html => {:class=> "form-control" ,:style=>"width:300px;"} %>
-
-                 <%= o.input :option_4, :required => true, :label =>false, :placeholder=>"* Option 4" , :input_html => {:class=> "form-control",:style=>"width:300px;" }%>
-            <% end %>
-          </div>
-
-        <% end %>
-        
-        
-          <%= f.submit "Create Survey", :id=> "", :class=>"btn btn-sml btn-primary", :style=>"margin-top:10px; ", "data-loading-text"=>"Signing In..." %>
-       
       
+    <%= f.input :description, :required => true, :as => :text , :placeholder=>"Description", input_html: { :class=> "form-control"} %>
+      
+      
+   <div style="background-color:#f1f1f1;padding:10px;margin-top:10px;">
+     <h4>Add Questions</h4>
+
+      
+        <%= f.fields_for(:questions , :input_html => {:style=>""}) do |q|  %>
+
+        <div style="background-color:#cdcdcd;margin:10px;padding:10px;">
+            <%= q.input :text, :label => false , :required => true, :placeholder=>"Question ", input_html: { :class=> "form-control" } %>
+
+            <%= q.input :type, :required => true, :as => :select, :label=>false, :collection =>@types, :prompt => "Select your Question Type",:input_html=>{  :onchange => "", :class=> "form-control" , :style=>"width:50%;"} %>
+            
+            <%= q.link_to_remove "Remove this Question"  %>  
+
+              <%= q.fields_for :options do |o| %>
+            
+              <div style="background-color:#bdbdbd;margin:5px;padding:10px;" >
+                  <%= o.input :value, :label => false , :required => true, :placeholder=>"* Option ", input_html: { :class=> "form-control"} %>
+
+                  <%= o.link_to_remove "Remove this Option" %>
+              </div>
+            
+          <% end %>
+
+          <%= q.link_to_add "Add Option to this Question", :options  , :style => "margin-left:20px;"%>
+          
+          </div>
+            <% end %> 
+        
+
+            <%= f.link_to_add "Add new Question", :questions %>
+          
+        </div>
+
+         <%= f.submit "Create Survey", :class=>"btn btn-lg btn-primary", :style=>"margin-top:30px; ", "data-loading-text"=>"Signing In..." %>
+       
     <% end %>
 
 </div>
 </div>
-
-<script type="text/javascript">
-
-  function showOptions(obj,id){
-    
-    if(obj.value == "MultipleChoiceSingleQuestion" || obj.value == "MultipleChoiceMultipleQuestion")
-      $("#option_"+id).show();
-    else
-      $("#option_"+id).hide();
-  }
-
-
-</script>

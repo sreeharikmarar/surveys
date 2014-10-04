@@ -1,7 +1,11 @@
-<div class="container" style="background-color:#fff;height:inherit;background-image: url('/assets/linedpaper.png');background-repeat:repeat;padding-bottom:30px;";>
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><%= link_to "All Feedbacks" , survey_feedbacks_path %></li>
+  <li class="active"><%= @feedback.survey.title %></li>
+</ol>
 
 
-
+<div class="container paper">
 <div style="margin-left:40px;">
 
 		<h1 style="color:#000"><%= @feedback.survey.title %></h1>
@@ -17,9 +21,9 @@
 			
 				<h4><%= "#{index+1}, #{answer.question.text}" %></h4>
 				<% if answer.question.multiple_choice_multiple? %>
-					<p style="margin-left:20px;font-style:italic;"><%= answer.answer.join(",") %></p>
+					<p style="margin-left:20px;font-style:italic;"><%= "Answer: #{answer.value.join(",")}" %></p>
 				<% else %>
-					<p style="margin-left:20px;font-style:italic;"><%= answer.answer %></p>
+					<p style="margin-left:20px;font-style:italic;"><%= "Answer: #{answer.value}" %></p>
 				<% end %>
 			
 		<% end %>

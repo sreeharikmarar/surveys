@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
     create_table :answers do |t|
       t.integer :question_id
       t.integer :feedback_id
-      t.text :answer
+      t.text :value
 
       t.timestamps
     end

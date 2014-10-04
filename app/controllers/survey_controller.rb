@@ -10,19 +10,20 @@ class SurveyController < ApplicationController
 
     @survey = Survey.new
     @types = Question.types
-    5.times {@survey.questions.build }
+    4.times { @survey.questions.build }
 
   end
 
   def create
 
     @survey = Survey.new survey_params
-    
+    @types = Question.types
+
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey }
       else
-        @types = Question.types
+        @option_errors = @survey.errors.messages["questions.options"]
         format.html { render :new }
       end
     end
@@ -46,15 +47,16 @@ class SurveyController < ApplicationController
   def update
 
     @survey = Survey.find_by_id(params[:id])
+    @types = Question.types
     
     respond_to do |format|
       if @survey.update_attributes survey_params
         format.html { redirect_to @survey }
       else
-        format.html { render :new }
+        @option_errors = @survey.errors.messages
+        format.html { render :edit }
       end
     end
-
   end
 
   def destroy

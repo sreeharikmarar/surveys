@@ -3,7 +3,7 @@
   path = @feedback.new_record? ? survey_feedbacks_path : survey_feedback_path 
 %>
 
-<div class="container" style="height:inherit;background-color:#fff;background-image: url('/assets/linedpaper.png');background-repeat:repeat;";>
+<div class="container paper">
 
 
 <div style="padding-top:20px;padding-bottom:50px;margin-left:40px;">
@@ -25,26 +25,30 @@
             <%= q.input :question_id , :as => :hidden , :input_html => { :value => @survey.questions[q.index].id } %>
                 
             
-              <h4><%= "#{q.index+1}, #{ @survey.questions[q.index].text}" %></h4>
+              <h3><%= "#{q.index+1}, #{ @survey.questions[q.index].text}" %></h3>
                 
+              <div style="margin-left:30px;">
                 <% case @survey.questions[q.index].type 
 
                 when "DateQuestion" %>
-                  <%= q.input :answer, :required => true, :label=>false , :as => :string, :placeholder => "please selct a date from the calender",:input_html => {:class=> "form-control datepicker" ,:style=>"width:400px;"} %>
+                <div style="display:block">
+                  <%= q.input :value, :required => true, :label=>false , :as => :string, :placeholder => "please selct a date from the calender",:input_html => {:class=> "form-control datepicker" ,:style=>"width:70%;"} %>
+                  </div>
                 <% when "EssayQuestion" %>
-                  <%= q.input :answer, :required => true, :placeholder => "Yor answer should contain aleast 20 letters", :label=>false , :as => :text , :input_html => {:class=> "form-control",:style=>"width:600px;height:100px;"} %>
+                  <%= q.input :value, :required => true, :placeholder => "Yor answer should contain aleast 20 letters", :label=>false , :as => :text , :input_html => {:class=> "form-control",:style=>"width:70%;height:100px;"} %>
                 <% when "NumericQuestion" %>
-                  <%= q.input :answer, :required => true, :placeholder => "please enter a number" , :as => :string , :label=>false , :input_html => {:class=> "form-control",:style=>"width:600px;"}%>
+                  <%= q.input :value, :required => true, :placeholder => "please enter a number" , :as => :string , :label=>false , :input_html => {:class=> "form-control",:style=>"width:600px;"}%>
                 <% when "MultipleChoiceSingleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :radio_buttons , :collection => @survey.questions[q.index].option_list , :input_html => {:class=> "form-control"} %>
+                  <%= q.input :value, :required => true,  :label=>false , :as=> :radio_buttons , :collection => @survey.questions[q.index].option_list , :input_html => {:style=>""} %>
                 <% when "MultipleChoiceMultipleQuestion" %>
-                  <%= q.input :answer, :required => true,  :label=>false , :as=> :check_boxes , :collection => @survey.questions[q.index].option_list , :input_html => {:class=> "form-control"}%>
+                  <%= q.input :value, :required => true,  :label=>false , :as=> :check_boxes , :collection => @survey.questions[q.index].option_list , :input_html => {:class=> ""}%>
                 <% end %>
+                </div>
                 
       <% end %>
 
 
-          <%= f.submit "Submit Survey", :id=> "", :class=>"btn btn-lg btn-inverse", :style=>"margin-top:40px; ", "data-loading-text"=>"Signing In..." %>
+          <%= f.submit "Submit Survey", :id=> "", :class=>"btn btn-lg btn-primary", :style=>"margin-top:40px; ", "data-loading-text"=>"Signing In..." %>
       
 <% end %>
 </div>

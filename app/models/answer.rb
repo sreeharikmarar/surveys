@@ -1,6 +1,6 @@
 class Answer < ActiveRecord::Base
 	
-	serialize :answer
+	serialize :value
 
 	belongs_to :question , :class_name => "Question"
 	
@@ -8,9 +8,9 @@ class Answer < ActiveRecord::Base
 
 	validates :question , :presence => true
 
-	validates :answer , :presence => true 
+	validates_numericality_of :value, :if => :numeric_question?
 
-	validates_numericality_of :answer, :if => :numeric_question?
+	validates :value , :presence => true
 
 	validate :answer_type
 
@@ -23,14 +23,14 @@ class Answer < ActiveRecord::Base
 		
 		case question.type
 		when "DateQuestion"	
-			answer.to_date rescue errors.add(:answer, "Your answer should be a Date value")
+			value.to_date rescue errors.add(:value, "Your answer should be a Date value")
 		when "EssayQuestion"
-		    errors.add(:answer, "Your answer should contain atleast 20 characters") if answer.blank? || answer.length < 20 
+		    errors.add(:value, "Your answer should contain atleast 20 characters") if value.blank? || value.length < 20 
 		when "MultipleChoiceSingleQuestion"
-			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(answer)
+			errors.add(:value, "Your answer should be selected from the Options given") unless question.option_list.include?(value)
 		when "MultipleChoiceMultipleQuestion"
-			a = answer.first answer.size - 1
-			errors.add(:answer, "Your answer should be selected from the Options given") unless question.option_list.include?(a.sample)
+			v = value.first value.size - 1
+			errors.add(:value, "Your answer should be selected from the Options given") unless question.option_list.include?(v.sample)
 		end
 	end
 end

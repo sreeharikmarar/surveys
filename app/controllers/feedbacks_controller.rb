@@ -17,7 +17,7 @@ class FeedbacksController < ApplicationController
       		redirect_to survey_feedback_path(@survey, @feedback)
     	else
       		@feedback = @survey.feedbacks.build
-          5.times { @feedback.answers.build }
+          @survey.questions.size.times { @feedback.answers.build }
     	end
 	end
 

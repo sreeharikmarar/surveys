@@ -1,3 +1,8 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active">Surveys</li>
+</ol>
+
 <h1>All Surveys</h1>
 
 
@@ -9,12 +14,12 @@
 
 
 <% Survey.all.each do |survey| %>
-<div class="well" style="float:left;margin-left:10px;width:200px;background-image: url('/assets/survey_mini.jpg')">
+<div class="well min-survey">
  	<h4 align="center"><%= survey.title %></h4>
  	<div style="padding-top:50px;">
 		<%= link_to "show" , survey_path(:id => survey.id) %> 
 		<%= link_to "edit" , edit_survey_path(:id => survey.id) ,:style=>"margin-left:25px;"%> 
-		<%= link_to "delete" , survey_path(:id => survey.id) , :method => :delete , :confirm => "Are you sure" ,:style=>"margin-left:25px;"%>
+		<%= link_to "delete" , survey_path(:id => survey.id) , :method => :delete , :data_confirm => 'Are you sure?',:style=>"margin-left:25px;"%>
 	</div> 
 </div>
 

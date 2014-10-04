@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140928185731) do
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.integer  "feedback_id"
-    t.text     "answer"
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,10 +36,7 @@ ActiveRecord::Schema.define(version: 20140928185731) do
 
   create_table "options", force: true do |t|
     t.integer "question_id"
-    t.string  "option_1"
-    t.string  "option_2"
-    t.string  "option_3"
-    t.string  "option_4"
+    t.string  "value"
   end
 
   add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree

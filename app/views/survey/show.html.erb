@@ -1,7 +1,12 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active"><%= link_to "All Surveys" , survey_index_path %></li>
+  <li class="active"><%= @survey.title %></li>
+</ol>
 
 
 
-<div class="container" style="background-color:#fff;height:inherit;background-image: url('/assets/linedpaper.png');background-repeat:repeat;padding-bottom:30px;";>
+<div class="container paper">
 
 <h1 style="color:#666"><%= @survey.title %></h1>
 
@@ -17,11 +22,13 @@
 
 <p><b><%= "{ #{@survey.description} }" %></b></p>
 
-<h3>Questions</h3>
+<h2>Questions</h2>
 
 <% @survey.questions.each_with_index do |question,index| %>
 
-<%= "#{index+1}, #{question.text}" %> </br>
+	<h4><%= "#{index+1}, #{question.text}" %></h4>
+
+	   <div style="margin-left:30px;font-style:italic;"><%= "Options:  #{question.option_list.join(",")}"  if question.options.any? %></div>
 
 <% end %>
 
