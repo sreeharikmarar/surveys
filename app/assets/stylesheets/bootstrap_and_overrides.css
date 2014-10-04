@@ -6,7 +6,13 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+   background-image: url("/assets/tweed.png");
+}
 .input .radio { display: inline-block;margin-left: 15px;font-weight: bold;}
 .input .checkbox { display: inline-block;margin-left: 15px;font-weight: bold;}
 
