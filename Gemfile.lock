@@ -38,10 +38,11 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     commonjs (0.2.7)
-    devise (3.3.0)
+    devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
+      responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
@@ -75,9 +76,9 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.2)
     multi_json (1.10.1)
-    mysql2 (0.3.16)
     nested_form (0.3.2)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -106,6 +107,8 @@ GEM
     rdoc (4.1.2)
       json (~> 1.4)
     ref (1.0.5)
+    responders (1.1.1)
+      railties (>= 3.2, < 4.2)
     rspec-core (3.1.5)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -147,7 +150,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.3.0)
+    turbolinks (2.4.0)
       coffee-rails
     twitter-bootstrap-rails (3.2.0)
       actionpack (~> 4.1)
@@ -174,8 +177,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
-  mysql2
   nested_form
+  pg
   rails (= 4.1.2)
   rails_12factor
   rspec-rails
