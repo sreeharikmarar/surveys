@@ -5,9 +5,9 @@ FactoryGirl.define do
 
     survey
 
-  	text "choice 1"
+  	text "Sample Question"
 
-  	type 'MultipleChoiceSingleQuestion'
+  	type 'EssayQuestion'
 
     factory :essay_question do 
     	type 'EssayQuestion'
@@ -23,12 +23,12 @@ FactoryGirl.define do
 
     factory :multiple_choice_single_question do 
     	type 'MultipleChoiceSingleQuestion'
-    	option
+        # association :options, factory: :multiple_choice_single_option
     end
 
-    factory :multiple_choice_multiple_question do 
+    factory :multiple_choice_multiple_question do
     	type 'MultipleChoiceMultipleQuestion'
-    	option
+        # association :options, factory: :multiple_choice_multiple_option
     end
 
   end

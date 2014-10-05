@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :survey, :class => 'Survey' do
 
   	sequence(:title) {|n| " Sample survey #{n}" }
-  	description "loren ibsum loren ibsum loren ibsum"
-  	
-  end
+  	description "lorem ibsum lorem ibsum lorem ibsum"
+  	end
 end

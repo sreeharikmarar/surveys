@@ -15,7 +15,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'devise'
+# require 'devise'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -37,7 +37,7 @@ RSpec.configure do |config|
   end
 
   
-  config.include Devise::TestHelpers, :type => :controller
+  # config.include Devise::TestHelpers, :type => :controller
 
   # config.extend Support::ControllerMacros, :type => :controller
   # rspec-mocks config goes here. You can use an alternate test double

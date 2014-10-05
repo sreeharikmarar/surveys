@@ -12,7 +12,7 @@ class Question < ActiveRecord::Base
 	validates :text , :presence => true , :length => {:minimum => 1 , :maximum => 250 }
 	validates :type, :presence => true, :length => {:minimum => 1 , :maximum => 50 } 
 
-	validates :options , :presence => true , :if => :check_multiple_question
+	# validates :options , :presence => true , :if => :check_multiple_question
 
 	def check_normal_question
 		%w[EssayQuestion DateQuestion NumericQuestion].include?(type)

@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :option do
-  	option_1 "choice 1"
-  	option_2 "choice 2"
-  	option_3 "choice 3"
-  	option_4 "choice 4"
+ 
+   	value ["choice 1","choice 2","choice 3","choice 4"]
+  	
   end
 end

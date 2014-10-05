@@ -23,7 +23,6 @@ class SurveyController < ApplicationController
       if @survey.save
         format.html { redirect_to @survey }
       else
-        @option_errors = @survey.errors.messages["questions.options"]
         format.html { render :new }
       end
     end
@@ -53,7 +52,6 @@ class SurveyController < ApplicationController
       if @survey.update_attributes survey_params
         format.html { redirect_to @survey }
       else
-        @option_errors = @survey.errors.messages
         format.html { render :edit }
       end
     end

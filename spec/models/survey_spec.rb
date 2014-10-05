@@ -16,14 +16,14 @@ RSpec.describe Survey, :type => :model do
     		FactoryGirl.create(:question, :survey => @survey)
       		@survey.should be_valid
       		@survey.questions.should_not be_blank
-      		@survey.questions.last.option.should be_blank
+      		@survey.questions.last.options.should be_blank
     	end
 
     	it "should create a valid Survey with type Essay Question " do
     		FactoryGirl.create(:essay_question, :survey => @survey)
       		@survey.should be_valid
       		@survey.questions.last.should_not be_blank
-      		@survey.questions.last.option.should be_blank
+      		@survey.questions.last.options.should be_blank
       		expect(@survey.questions.last.type).to eq("EssayQuestion")
       	end
 
@@ -31,7 +31,7 @@ RSpec.describe Survey, :type => :model do
     		FactoryGirl.create(:numeric_question, :survey => @survey)
       		@survey.should be_valid
       		@survey.questions.last.should_not be_blank
-      		@survey.questions.last.option.should be_blank
+      		@survey.questions.last.options.should be_blank
       		expect(@survey.questions.last.type).to eq("NumericQuestion")
     	end
 
@@ -39,24 +39,25 @@ RSpec.describe Survey, :type => :model do
     		FactoryGirl.create(:date_question, :survey => @survey)
       		@survey.should be_valid
       		@survey.questions.last.should_not be_blank
-      		@survey.questions.last.option.should be_blank
+      		@survey.questions.last.options.should be_blank
       		expect(@survey.questions.last.type).to eq("DateQuestion")
     	end
 
     	it "should create a valid Survey with type Multiple Choice Multiple questions " do
-    		FactoryGirl.create(:multiple_choice_multiple_question, :survey => @survey)
-      		@survey.should be_valid
-      		@survey.questions.last.should_not be_blank
-      		@survey.questions.last.option.should_not be_blank
-      		expect(@survey.questions.last.type).to eq("MultipleChoiceMultipleQuestion")
+
+    		  @question = FactoryGirl.build(:multiple_choice_multiple_question, :survey => @survey)
+      		@question.options << FactoryGirl.create(:option)
+          @survey.should be_valid
+      		@question.options.should_not be_blank
+      		expect(@question.type).to eq("MultipleChoiceMultipleQuestion")
     	end
 
-    	it "should create a valid Survey with type questions " do
-    		FactoryGirl.create(:multiple_choice_single_question, :survey => @survey)
-      		@survey.should be_valid
-      		@survey.questions.last.should_not be_blank
-      		@survey.questions.last.option.should_not be_blank
-      		expect(@survey.questions.last.type).to eq("MultipleChoiceSingleQuestion")
+    	it "should create a valid Survey with type Multiple Choice Single questions " do
+    		@question = FactoryGirl.build(:multiple_choice_single_question, :survey => @survey)
+      	@question.options << FactoryGirl.create(:option)
+        @survey.should be_valid
+        @question.options.should_not be_blank
+        expect(@question.type).to eq("MultipleChoiceSingleQuestion")
     	end
 
     end

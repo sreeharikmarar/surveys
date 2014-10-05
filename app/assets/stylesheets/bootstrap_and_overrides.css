@@ -13,6 +13,7 @@ body {
    height:100%;
    background-image: url("/assets/tweed.png");
 }
+.input {margin-top: 10px;}
 .input .radio { display: inline-block;margin-left: 15px;font-weight: bold;}
 .input .checkbox { display: inline-block;margin-left: 15px;font-weight: bold;}
 
@@ -31,7 +32,7 @@ h1 { color: #fff; }
 	margin-top: 10px
 }
 
-.breadcrumb { background-color: transparent;}
+.breadcrumb { background-color: transparent !important;}
 .breadcrumb > li { text-shadow: 0 1px 0;} 
 
-.navbar .navbar-brand {color:#0088cc;margin-left: -40px;}
+.navbar .navbar-brand {color:#0088cc;}
