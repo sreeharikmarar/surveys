@@ -1,21 +1,20 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def new
-  	@user = User.new
-  	super
+    @user = User.new
+    super
   end
-  
-  def create
 
+  def create
     @user = User.new user_params
     @user.valid?
-    
+
     if @user.save
       redirect_to user_session_path
       flash[:notice] = "You have Successfully Registered with Us.Please verify your mail to get in"
     else
       flash[:errors] = @user.errors
-      render :new 
+      render :new
     end
   end
 

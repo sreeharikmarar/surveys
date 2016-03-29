@@ -9,5 +9,4 @@ class User < ActiveRecord::Base
   
   validates_format_of :username, :with => /^[a-zA-Z1-9]*$/i ,:multiline => true
   
-    
 end

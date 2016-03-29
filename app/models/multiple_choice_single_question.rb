@@ -1,4 +1,3 @@
 class MultipleChoiceSingleQuestion < Question
-   
-  
+
 end
